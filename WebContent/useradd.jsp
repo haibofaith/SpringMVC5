@@ -9,10 +9,15 @@
 <body>
 <h1>用户信息添加</h1>
 <form action="user/add.do" method="post">
-	编号：<input type="text" name="userId">
-	账号：<input type="text" name="userName">
-	密码：<input type="text" name="passWord">
-	<input type="submit" value="提交">
+	编号：<input type="text" name="userId"><br>
+	账号：<input type="text" name="userName"><br>
+	密码：<input type="text" name="passWord"><br>
+	兴趣爱好：<br>
+		<input type="checkbox" value="Lol" name="userXq">Lol<br>
+		<input type="checkbox" value="Dota" name="userXq">Dota<br>
+		<input type="checkbox" value="Dnf" name="userXq">Dnf<br>
+	时间：<input type="text" name="userTime"><br>
+	<input type="submit" value="提交"><br>
 </form>
 </body>
 </html>

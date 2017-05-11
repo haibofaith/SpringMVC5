@@ -81,4 +81,58 @@ controller使用：
 		System.out.println(user);
 		return "useradd";
 	}	
-		
+
+3.checkbox多个参数：
+
+useradd.jsp:
+	
+	<body>
+	<h1>用户信息添加</h1>
+	<form action="user/add.do" method="post">
+		编号：<input type="text" name="userId"><br>
+		账号：<input type="text" name="userName"><br>
+		密码：<input type="text" name="passWord"><br>
+		兴趣爱好：<br>
+			<input type="checkbox" value="Lol" name="userXq">Lol<br>
+			<input type="checkbox" value="Dota" name="userXq">Dota<br>
+			<input type="checkbox" value="Dnf" name="userXq">Dnf<br>
+		<input type="submit" value="提交"><br>
+	</form>
+	</body>	
+	
+UserInfo:对应即可
+
+	public class UserInfo {
+	private String userId;
+	private String userName;
+	private String passWord;
+	private String[] userXq;
+	...
+	}	
+
+4.提交时间类型
+
+1）添加时间属性编辑器：原理同string类型转integer类型
+
+	/**
+	 * 时间属性编辑器
+	 * */
+	@InitBinder
+	public void initBinder(WebDataBinder binder) {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		CustomDateEditor cust = new CustomDateEditor(sdf, true);
+		binder.registerCustomEditor(Date.class, cust);
+	}	
+	
+2）不添加时间属性编辑器的方案
+	
+	user对象中添加注解
+	public class UserInfo {
+	private String userId;
+	private String userName;
+	private String passWord;
+	private String[] userXq;
+	@DateTimeFormat(pattern="yyyy-MM-dd")
+	private Date userTime;
+	...
+	}	
